@@ -1,10 +1,15 @@
+:root {
+  --booking-red: 0 84% 50%;
+  --booking-red-foreground: 0 0% 100%;
+  --booking-gold: 45 93% 47%;
+  --seat-available: 142 71% 45%;
+  --seat-booked: 220 9% 46%;
+  --seat-selected: 221 83% 53%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
 
 @layer base {
   :root {
@@ -17,8 +22,8 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 84% 50%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -34,24 +39,17 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 0 84% 50%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -65,8 +63,8 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 84% 55%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -82,7 +80,8 @@ All colors MUST be HSL.
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 0 84% 55%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -102,4 +101,36 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom scrollbar for date picker */
+.date-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.date-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 2px;
+}
+
+.date-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 2px;
+}
+
+/* Seat styling */
+.seat {
+  @apply w-8 h-8 rounded-t-lg flex items-center justify-center text-xs font-medium transition-all cursor-pointer;
+}
+
+.seat-available {
+  @apply border-2 border-green-500 text-green-600 hover:bg-green-50;
+}
+
+.seat-booked {
+  @apply bg-gray-300 text-gray-500 cursor-not-allowed;
+}
+
+.seat-selected {
+  @apply bg-primary text-primary-foreground;
 }
