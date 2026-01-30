@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Search, MapPin, Menu, User, LogOut } from 'lucide-react';
+import { Search, Menu, User, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useLocation } from '@/hooks/useLocation';
 import { AuthModal } from '@/components/auth/AuthModal';
+import { LocationSelector } from '@/components/layout/LocationSelector';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +17,7 @@ export function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const { user, signOut } = useAuth();
+  const { city, setCity } = useLocation();
   const navigate = useNavigate();
 
   const openSignIn = () => {
@@ -60,10 +63,9 @@ export function Header() {
           {/* Right side */}
           <div className="flex items-center gap-4">
             {/* Location */}
-            <button className="hidden sm:flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>Mumbai</span>
-            </button>
+            <div className="hidden sm:block">
+              <LocationSelector selectedCity={city} onCityChange={setCity} />
+            </div>
 
             {/* Auth buttons */}
             {user ? (
